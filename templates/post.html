@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+<title>學生資料管理系統-新增學生資料</title>
+{% endblock %}
+
+{% block content %}
+<div class="content-card p-4 p-md-5 mx-auto" style="max-width: 760px;">
+    <div class="d-flex flex-column flex-sm-row justify-content-between gap-3 mb-4">
+        <div>
+            <p class="section-subtitle mb-1">Create Student</p>
+            <h1 class="section-title h3 mb-0">新增學生資料</h1>
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-soft-primary align-self-start">回首頁</a>
+    </div>
+    <form action="{% url 'post' %}" method="POST" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <label for="cname" class="form-label">姓名 <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="cname" name="cname" required placeholder="請輸入姓名">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label d-block">性別 <span class="text-danger">*</span></label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="csex_m" name="csex" value="M" checked>
+                <label class="form-check-label" for="csex_m">男</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="csex_f" name="csex" value="F">
+                <label class="form-check-label" for="csex_f">女</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="cbirthday" class="form-label">生日 <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="cbirthday" name="cbirthday" required>
+        </div>
+        <div class="col-md-6">
+            <label for="cemail" class="form-label">信箱 <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="cemail" name="cemail" required placeholder="請輸入 mail">
+        </div>
+        <div class="col-md-6">
+            <label for="cphone" class="form-label">電話</label>
+            <input type="text" class="form-control" id="cphone" name="cphone" placeholder="請輸入電話">
+        </div>
+        <div class="col-md-6">
+            <label for="caddr" class="form-label">地址</label>
+            <input type="text" class="form-control" id="caddr" name="caddr" placeholder="請輸入地址">
+        </div>
+        <div class="col-12 d-flex justify-content-end gap-2 pt-3">
+            <button type="reset" class="btn btn-outline-secondary">清除</button>
+            <button type="submit" class="btn btn-primary px-4">儲存</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

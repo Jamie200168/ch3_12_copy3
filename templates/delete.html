@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}
+<title>學生資料管理系統-刪除學生資料</title>
+    <style>
+        h1,h3{
+            text-align: center;
+        }
+        table, th, td{
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .head_content{
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="head_content">
+    <h1>學生資料管理系統-刪除學生資料</h1>
+    <h3><a href="{% url 'index' %}">回首頁</a></h3>
+</div>
+<div>
+    <div>
+    {% comment %} <form action="/delete/{{ obj_data.cid }}/" method="POST"> {% endcomment %}
+    <form action="{% url 'delete' obj_data.cid %}" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>姓名</th><td>{{ obj_data.cname }}</td>
+            </tr>
+            <tr>
+                <th>性別</th>
+                <td>
+                    {% if obj_data.csex == "M" %}男{% endif %}
+                    {% if obj_data.csex == "F" %}女{% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>生日</th><td>{{ obj_data.cbirthday|date:'Y-m-d' }}</td>
+            </tr>
+            <tr>
+                <th>信箱</th><td>{{ obj_data.cemail }}</td>
+            </tr>
+            <tr>
+                <th>電話</th><td>{{ obj_data.cphone }}</td>
+            </tr>
+            <tr>
+                <th>地址</th><td>{{ obj_data.caddr }}</td>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align:center;">
+                    <input type="submit" name="button2" id="button2" value="刪除" onclick="return doubleCheck();">
+                </th>
+
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+<script>
+//透過javaScript
+function doubleCheck() {
+    return confirm("確定要刪除這筆資料嗎?\n刪除後將無法復原！\n");
+}
+</script>
+
+{% endblock %}

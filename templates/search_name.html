@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %}<form action = "/search_list/" method="get">{% endcomment %}
+    <form action="{% url 'search_list' %}" method="get">
+        <label for="cname">姓名</label>
+        <input type="text" id="cname" name="cname">
+        <p><button type="submit">搜尋</button></p>
+    </form>
+</body>
+</html>
